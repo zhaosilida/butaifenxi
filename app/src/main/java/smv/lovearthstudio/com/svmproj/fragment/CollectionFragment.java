@@ -26,6 +26,7 @@ import java.io.IOException;
 
 import smv.lovearthstudio.com.svmproj.R;
 import smv.lovearthstudio.com.svmproj.fragment.base.BaseFragment;
+import smv.lovearthstudio.com.svmproj.view.SunBabyLoadingView;
 
 import static smv.lovearthstudio.com.svmproj.svm.SVM.dataToFeaturesArr;
 import static smv.lovearthstudio.com.svmproj.util.Constant.dir;
@@ -34,6 +35,8 @@ import static smv.lovearthstudio.com.svmproj.util.Constant.dir;
  * 采集数据的页面
  */
 public class CollectionFragment extends BaseFragment {
+
+    SunBabyLoadingView sunBabyLoadingView;
 
     View view;                                          // 页面根视图
     Spinner mSpAction, mSpPostioin, mSensorHz;          // action,postion,sensorhz 下拉选则器
@@ -99,6 +102,8 @@ public class CollectionFragment extends BaseFragment {
         mSpAction.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, new String[]{"unkown","still", "walking", "running", "骑车"}));
         mSpPostioin.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, new String[]{"手中", "裤兜", "腰带"}));
         mSensorHz.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, new String[]{"30hz", "50hz", "80hz"}));
+
+        sunBabyLoadingView = (SunBabyLoadingView) view.findViewById(R.id.sblv_lodding);
     }
 
     @Override
@@ -149,6 +154,7 @@ public class CollectionFragment extends BaseFragment {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_start_collection:
+                sunBabyLoadingView.setVisibility(View.VISIBLE);
                 mBtnStartCollection.setVisibility(view.GONE);
                 mBtnStopCollection.setVisibility(view.VISIBLE);
                 trainNum = 0;
@@ -159,6 +165,7 @@ public class CollectionFragment extends BaseFragment {
                 openSensor();
                 break;
             case R.id.btn_stop_collection:
+                sunBabyLoadingView.setVisibility(View.INVISIBLE);
                 mBtnStartCollection.setVisibility(view.VISIBLE);
                 mBtnStopCollection.setVisibility(view.GONE);
                 mBtnStartCollection.setEnabled(true);

@@ -77,4 +77,16 @@
         android:layout_height="wrap_content"
         android:textColor="#ffffff"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <smv.lovearthstudio.com.svmproj.view.SunBabyLoadingView
+            android:id="@+id/sblv_lodding"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
 </LinearLayout>
